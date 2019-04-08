@@ -15,15 +15,19 @@ public:
     struct Track
     {
         AbstractRunner *player;
+        uint currentPosi; // 当前运动员的相对起点位置
     };
 
     AbstractPlayGround(){inited = false; trackList = nullptr;}
     virtual ~AbstractPlayGround();
 
-    void Init(int iTrackNum)
+    void Init(uint iTrackNum)
     {
         trackNumber = iTrackNum;
 
+        // 设置运动员数为0
+        playerNumber = 0;
+        trackList = new Track[iTrackNum];
         CustInit();
         inited = true;
     }
@@ -46,10 +50,10 @@ public:
             return;
         }
 
-        int time = 0;
+        uint time = 0;
         while(time < 100){
             time++;
-            for(int i=0; i < playerNumber; i++){
+            for(uint i=0; i < playerNumber; i++){
                 trackList[i].player->Run();
             }
         }
@@ -57,13 +61,29 @@ public:
 
     void AddRunner(AbstractRunner *iRunner)
     {
+        if (iRunner == nullptr) {
+            printf("input is null ptr.\n");
+            return;
+        }
+        if (trackList == nullptr) {
+            printf("track is null ptr.\n");
+            return;
+        }
+        if (playerNumber > trackNumber) {
+            printf("too many player.\n");
+            return;
+        }
+        
+        trackList[playerNumber++].player = iRunner;
+        trackList[playerNumber].currentPosi = 0; // 初始位置都为0
+        printf("add player success.\n");
         return;
     }
 private:
     void CustInit() = 0;
-    int trackNumber;
-    int trackLength;
-    int playerNumber;
+    uint trackNumber;
+    uint trackLength;
+    uint playerNumber;
     Track *trackList;
     bool inited;
 

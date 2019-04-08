@@ -19,7 +19,7 @@ typedef unsigned int uint;
     __JUMP_HERE__:
 
 // 记录错误行数
-#define THROW()            \
+#define THROW()                     \
     {                               \
         __errorLine = __LINE__; \
         goto __JUMP_HERE__;         \

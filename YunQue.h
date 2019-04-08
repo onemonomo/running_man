@@ -22,6 +22,8 @@ private:
     }
     void CustRun()
     {
+        curPosi += speed;
+        
         return;
     }
 };

@@ -7,6 +7,7 @@
 #define _ABS_RUNNER_
 
 #include "string.h"
+#include "Common.h"
 
 class AbstractRunner
 {
@@ -27,11 +28,11 @@ public:
         }
     }
 
-    void Init(unsigned int iSpeed, char* iName)
+    void Init(uint iSpeed, char* iName)
     {
         // 空指针保护
         if(iName == nullptr){
-            printf("wrong name\n");
+            printf("wrong input name.\n");
             return;
         }
         name = new char[sizeof(char)];
@@ -43,6 +44,14 @@ public:
         printf("%s init succed.\n", name);
         inited = true;
     }
+    
+    // 不应该用这种方式获取跑道长度，应该player中添加playground的指针 todo 
+    void NotifyTrackLen(uint iTrackLen)
+    {
+        trackLength = iTrackLen;
+        return;
+    }
+
     // 对外接口最好固定下来，采用模板方法模式
     void Run()
     {
@@ -61,8 +70,9 @@ public:
 
 protected: // 不能定义成private，这样子类无法访问--->错,虚函数可以继承重写
     char *name;
-    unsigned int speed; // 毫秒速度
-    unsigned int curPosi;
+    uint speed; // 毫秒速度
+    uint curPosi;
+    uint trackLength;
     bool inited; // 是否已经初始化成功
 
 private:
