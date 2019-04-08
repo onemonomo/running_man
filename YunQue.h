@@ -18,12 +18,13 @@ protected:
 private:
     void CustInit()
     {
+        coolDown = 3 * (1.0 - 0.35);
+        step = 1.2;
         return;
     }
-    void CustRun()
+
+    void CustRun(bool &reached, double &nextPosi)
     {
-        curPosi += speed;
-        
         return;
     }
 };

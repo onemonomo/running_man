@@ -7,6 +7,9 @@
 
 typedef unsigned int uint;
 
+const double STANDARD_DISTANCE = 10.0;
+const double STANDARD_SPEED = 100.0;
+
 #define SUCCESS 0
 
 #define FUNC_ST                     \
@@ -19,9 +22,9 @@ typedef unsigned int uint;
     __JUMP_HERE__:
 
 // 记录错误行数
-#define THROW()                     \
+#define JUMP()                      \
     {                               \
-        __errorLine = __LINE__; \
+        __errorLine = __LINE__;     \
         goto __JUMP_HERE__;         \
     }
 // 函数返回值直接宏处理
@@ -29,7 +32,7 @@ typedef unsigned int uint;
     {                               \
         __funcReturn = func;        \
         if ( __funcReturn != SUCCESS ) \
-            THROW()                 \
+            JUMP()                  \
     }
 
 #define HANDLE_ERROR                \

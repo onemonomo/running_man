@@ -1,6 +1,7 @@
-#include <iostream>
-#include "YunQue.h"
 #include "Common.h"
+#include "PlayGroundOne.h"
+#include "YunQue.h"
+#include "Revenger.h"
 
 using namespace std;
 
@@ -15,13 +16,18 @@ HANDLE_ERROR
 END_HANDLE_ERROR
 }
 
+#define TRACK_NUM 2
+
 int main()
 {
-    test_func();
     AbstractRunner *runner1 = new YunQue;
-
     runner1->Init(130, "YunQue");
-    runner1->Run();
-    runner1->PrintName();
+    AbstractRunner *runner2 = new Revenger;
+    runner2->Init(100, "Rvenger");
+    PlayGroundOne *playGround1 = new PlayGroundOne;
+    playGround1->Init(TRACK_NUM);
+    playGround1->AddRunner(runner1);
+    playGround1->AddRunner(runner2);
+    playGround1->StartRun();
     return 0;
 }
