@@ -12,15 +12,20 @@
 class Revenger : public AbstractRunner
 {
 public:
-
+    virtual ~Revenger(){printf("~Revenger.\n");}
 protected:
 
 private:
     void CustInit()
     {
-        coolDown = 4;
+        coolDown = 3;
         step = 1;
         return;
+    }
+
+    void CustAction()
+    {
+        attackTimes++;
     }
 
     void CustRun(bool &reached, double &nextPosi)

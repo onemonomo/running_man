@@ -4,6 +4,7 @@
 
 AbstractPlayGround::AbstractPlayGround()
 {
+    cleanMode = true;
     inited = false;
     trackList = nullptr;
 };
@@ -16,8 +17,9 @@ AbstractPlayGround::~AbstractPlayGround()
     }
 };
 
-void AbstractPlayGround::Init(uint iTrackNum)
+void AbstractPlayGround::Init(uint iTrackNum, bool iCleanMode)
 {
+    cleanMode = iCleanMode;
     trackNumber = iTrackNum;
 
     // 设置运动员数为0
@@ -46,15 +48,17 @@ void AbstractPlayGround::StartRun()
     }
 
     uint time = 0;
-    while(time < 100){
+    while(time < TOTAL_STEPS){
         time++;
         for(uint i=0; i < playerNumber; i++){
             double tmp = 1;
             trackList[i].player->Run(trackList[i].reached, tmp);
         }
 
-        for(uint i = 0; i < playerNumber; i++){
-            trackList[i].player->PrintName();
+        if (cleanMode == false){
+            for(uint i = 0; i < playerNumber; i++){
+                trackList[i].player->PrintName();
+            }
         }
 
         for(uint i = 0; i < playerNumber; i++){
@@ -78,7 +82,7 @@ void AbstractPlayGround::AddRunner(AbstractRunner *iRunner)
         printf("track is null ptr.\n");
         return;
     }
-    if (playerNumber > trackNumber) {
+    if (playerNumber >= trackNumber) {
         printf("too many player.\n");
         return;
     }

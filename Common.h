@@ -1,5 +1,5 @@
 /*
-    å…¬å…±ä»£ç ï¼ŒåŒ…æ‹¬å¼‚å¸¸å¤„ç†å’Œé‡å‘½åç»“æ„
+    ¹«¹²´úÂë£¬°üÀ¨Òì³£´¦ÀíºÍÖØÃüÃû½á¹¹
 */
 
 #ifndef _COMMON_
@@ -9,6 +9,7 @@ typedef unsigned int uint;
 
 const double STANDARD_DISTANCE = 10.0;
 const double STANDARD_SPEED = 100.0;
+const uint TOTAL_STEPS = 100;
 
 #define SUCCESS 0
 
@@ -21,13 +22,13 @@ const double STANDARD_SPEED = 100.0;
     }                               \
     __JUMP_HERE__:
 
-// è®°å½•é”™è¯¯è¡Œæ•°
+// ¼ÇÂ¼´íÎóĞĞÊı
 #define JUMP()                      \
     {                               \
         __errorLine = __LINE__;     \
         goto __JUMP_HERE__;         \
     }
-// å‡½æ•°è¿”å›å€¼ç›´æ¥å®å¤„ç†
+// º¯Êı·µ»ØÖµÖ±½Óºê´¦Àí
 #define EXEC(func)                  \
     {                               \
         __funcReturn = func;        \
@@ -38,7 +39,7 @@ const double STANDARD_SPEED = 100.0;
 #define HANDLE_ERROR                \
     {                               \
         printf("error occured at line = %d.\n", __errorLine); \
-        // åšé”™è¯¯è¡¥æ•‘æªæ–½
+        // ×ö´íÎó²¹¾È´ëÊ©
 
 #define END_HANDLE_ERROR            \
     }

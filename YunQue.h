@@ -1,7 +1,7 @@
 /*
-    éµå¾ªåŸåˆ™ï¼šå½“å‰é’ˆå¯¹ä¸åŒè§’è‰²çš„ä¸åŒé€Ÿåº¦è®¡ç®—æ–¹å¼é‡‡ç”¨çš„æ˜¯æ¨¡æ¿æ–¹æ³•æ¨¡å¼ï¼Œé€šè¿‡å®šä¹‰å¥½æ¥å£å
-    æ¯ä¸ªè§’è‰²è‡ªè¡Œé‡å†™ç§æœ‰çš„å®é™…æ–¹æ³•ã€‚
-    è§’è‰²ï¼šäº‘é›€
+    ×ñÑ­Ô­Ôò£ºµ±Ç°Õë¶Ô²»Í¬½ÇÉ«µÄ²»Í¬ËÙ¶È¼ÆËã·½Ê½²ÉÓÃµÄÊÇÄ£°å·½·¨Ä£Ê½£¬Í¨¹ı¶¨ÒåºÃ½Ó¿Úºó
+    Ã¿¸ö½ÇÉ«×ÔĞĞÖØĞ´Ë½ÓĞµÄÊµ¼Ê·½·¨¡£
+    ½ÇÉ«£ºÔÆÈ¸
 */
 
 #ifndef _YUN_QUE_
@@ -12,20 +12,44 @@
 class YunQue : public AbstractRunner
 {
 public:
+    virtual ~YunQue(){printf("~YunQue.\n");}
+    void YouDang()
+    {
+        step = 1.2;
+    }
+
+    void GuoShang()
+    {
+        coolDown -= 0.5;
+    }
 
 protected:
 
 private:
     void CustInit()
     {
-        coolDown = 3 * (1.0 - 0.35);
-        step = 1.2;
+        coolDown = 3;
+        step = 1;
         return;
     }
 
     void CustRun(bool &reached, double &nextPosi)
     {
         return;
+    }
+
+    void CustAction()
+    {
+        if (totalActionTimes == 1) {
+            XiangWei();
+            return;
+        }
+        attackTimes++;
+    }
+
+    void XiangWei()
+    {
+        coolDown = coolDown*(1-0.35);
     }
 };
 

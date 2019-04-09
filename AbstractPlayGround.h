@@ -20,20 +20,22 @@ public:
 
     AbstractPlayGround();
     virtual ~AbstractPlayGround();
-    void Init(uint iTrackNum);
+    void Init(uint iTrackNum, bool iCleanMode = true);
     void StartRun();
     void AddRunner(AbstractRunner *iRunner);
 
 private:
     virtual void CustInit() = 0;
-    uint trackNumber;
-    double trackLength;
-    uint playerNumber;
-    Track *trackList;
-    bool inited;
     // 禁用复制构造和赋值运算
     AbstractPlayGround(const AbstractPlayGround&);
     AbstractPlayGround& operator=(const AbstractPlayGround&);
 
+private:
+    uint trackNumber;
+    double trackLength;
+    Track *trackList;
+    uint playerNumber;
+    bool inited;
+    bool cleanMode;
 };
 #endif // _ABSTRACT_PLAYGROUND_

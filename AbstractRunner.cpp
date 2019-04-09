@@ -1,4 +1,5 @@
 #include "AbstractRunner.h"
+#include "string.h"
 
 AbstractRunner::AbstractRunner()
 {
@@ -7,6 +8,7 @@ AbstractRunner::AbstractRunner()
     curPosi = 0;
     step = 1;
     totalActionTimes = 0;
+    attackTimes = 0;
     inited = false;
 }
 
@@ -17,16 +19,18 @@ AbstractRunner::~AbstractRunner()
         delete [] name;
         name = nullptr;
     }
+    printf("~AbstractRunner.\n");
 }
 
-void AbstractRunner::Init(double iSpeed, char* iName)
+void AbstractRunner::Init(double iSpeed, char iName[])
 {
     // 空指针保护
     if(iName == nullptr){
         printf("wrong input name.\n");
         return;
     }
-    name = new char[sizeof(char)];
+
+    name = new char[strlen(iName)+1];
     strcpy(name, iName);
     // 冷却时间默认4秒
     coolDown = 4.0;
@@ -60,6 +64,7 @@ void AbstractRunner::Action()
     totalActionTimes++;
     printf("%s action %d\n", name, totalActionTimes);
 
+    CustAction();
     // 下次位置变更为CD时间x标准长度
     curPosi = coolDown * STANDARD_DISTANCE * STANDARD_SPEED / speed;
 
@@ -86,5 +91,5 @@ void AbstractRunner::Report()
         printf("name not exist.\n");
         return;
     }
-    printf("%s actioned times = %d\n", name, totalActionTimes);
+    printf("%s actioned_times(%d) attack_times(%d) with cool_down(%f)\n", name, totalActionTimes, attackTimes, coolDown);
 }
