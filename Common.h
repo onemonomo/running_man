@@ -1,5 +1,5 @@
 /*
-    ¹«¹²´úÂë£¬°üÀ¨Òì³£´¦ÀíºÍÖØÃüÃû½á¹¹
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹
 */
 
 #ifndef _COMMON_
@@ -22,13 +22,13 @@ const uint TOTAL_STEPS = 100;
     }                               \
     __JUMP_HERE__:
 
-// ¼ÇÂ¼´íÎóÐÐÊý
+// ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define JUMP()                      \
     {                               \
         __errorLine = __LINE__;     \
         goto __JUMP_HERE__;         \
     }
-// º¯Êý·µ»ØÖµÖ±½Óºê´¦Àí
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖµÖ±ï¿½Óºê´¦ï¿½ï¿½
 #define EXEC(func)                  \
     {                               \
         __funcReturn = func;        \
@@ -39,7 +39,7 @@ const uint TOTAL_STEPS = 100;
 #define HANDLE_ERROR                \
     {                               \
         printf("error occured at line = %d.\n", __errorLine); \
-        // ×ö´íÎó²¹¾È´ëÊ©
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ó²¹¾È´ï¿½Ê©
 
 #define END_HANDLE_ERROR            \
     }

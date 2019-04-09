@@ -12,19 +12,18 @@ AbstractRunner::AbstractRunner()
     inited = false;
 }
 
-// ³éÏóÀàÎö¹¹º¯ÊýÐèÒªÐé»¯
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½é»¯
 AbstractRunner::~AbstractRunner()
 {
     if(name != nullptr){
         delete [] name;
         name = nullptr;
     }
-    printf("~AbstractRunner.\n");
 }
 
 void AbstractRunner::Init(double iSpeed, char iName[])
 {
-    // ¿ÕÖ¸Õë±£»¤
+    // ï¿½ï¿½Ö¸ï¿½ë±£ï¿½ï¿½
     if(iName == nullptr){
         printf("wrong input name.\n");
         return;
@@ -32,23 +31,23 @@ void AbstractRunner::Init(double iSpeed, char iName[])
 
     name = new char[strlen(iName)+1];
     strcpy(name, iName);
-    // ÀäÈ´Ê±¼äÄ¬ÈÏ4Ãë
+    // ï¿½ï¿½È´Ê±ï¿½ï¿½Ä¬ï¿½ï¿½4ï¿½ï¿½
     coolDown = 4.0;
     speed = iSpeed;
-    // ¸÷¸ö½ÇÉ«×ÔÊÊÓ¦³õÊ¼»¯
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê¼ï¿½ï¿½
     CustInit();
 
-    // ³õÊ¼Î»ÖÃÉèÖÃ
+    // ï¿½ï¿½Ê¼Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     curPosi = STANDARD_DISTANCE * STANDARD_SPEED/speed;
     printf("%s init succed.\n", name);
     inited = true;
 }
 
-// ¶ÔÍâ½Ó¿Ú×îºÃ¹Ì¶¨ÏÂÀ´£¬²ÉÓÃÄ£°å·½·¨Ä£Ê½
-// ÅÜ0.1Ãë
+// ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½Ã¹Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½å·½ï¿½ï¿½Ä£Ê½
+// ï¿½ï¿½0.1ï¿½ï¿½
 void AbstractRunner::Run(bool &reached, double &nextPosi)
 {
-    // ´ý¶¨ÐèÒªÊ²Ã´·µ»ØÖµºÍÈë²Î
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒªÊ²Ã´ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½
     curPosi -= step;
     if(curPosi < 0){
         reached = 1;
@@ -65,7 +64,7 @@ void AbstractRunner::Action()
     printf("%s action %d\n", name, totalActionTimes);
 
     CustAction();
-    // ÏÂ´ÎÎ»ÖÃ±ä¸üÎªCDÊ±¼äx±ê×¼³¤¶È
+    // ï¿½Â´ï¿½Î»ï¿½Ã±ï¿½ï¿½ÎªCDÊ±ï¿½ï¿½xï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½
     curPosi = coolDown * STANDARD_DISTANCE * STANDARD_SPEED / speed;
 
     /*
