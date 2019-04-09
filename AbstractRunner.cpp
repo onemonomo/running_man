@@ -12,7 +12,7 @@ AbstractRunner::AbstractRunner()
     inited = false;
 }
 
-// ����������������Ҫ�黯
+// 抽象类析构函数需要虚化
 AbstractRunner::~AbstractRunner()
 {
     if(name != nullptr){
@@ -23,7 +23,7 @@ AbstractRunner::~AbstractRunner()
 
 void AbstractRunner::Init(double iSpeed, char iName[])
 {
-    // ��ָ�뱣��
+    // 空指针保护
     if(iName == nullptr){
         printf("wrong input name.\n");
         return;
@@ -31,23 +31,23 @@ void AbstractRunner::Init(double iSpeed, char iName[])
 
     name = new char[strlen(iName)+1];
     strcpy(name, iName);
-    // ��ȴʱ��Ĭ��4��
+    // 冷却时间默认4秒
     coolDown = 4.0;
     speed = iSpeed;
-    // ������ɫ����Ӧ��ʼ��
+    // 各个角色自适应初始化
     CustInit();
 
-    // ��ʼλ������
+    // 初始位置设置
     curPosi = STANDARD_DISTANCE * STANDARD_SPEED/speed;
     printf("%s init succed.\n", name);
     inited = true;
 }
 
-// ����ӿ���ù̶�����������ģ�巽��ģʽ
-// ��0.1��
+// 对外接口最好固定下来，采用模板方法模式
+// 跑0.1秒
 void AbstractRunner::Run(bool &reached, double &nextPosi)
 {
-    // ������Ҫʲô����ֵ�����
+    // 待定需要什么返回值和入参
     curPosi -= step;
     if(curPosi < 0){
         reached = 1;
@@ -64,7 +64,7 @@ void AbstractRunner::Action()
     printf("%s action %d\n", name, totalActionTimes);
 
     CustAction();
-    // �´�λ�ñ��ΪCDʱ��x��׼����
+    // 下次位置变更为CD时间x标准长度
     curPosi = coolDown * STANDARD_DISTANCE * STANDARD_SPEED / speed;
 
     /*

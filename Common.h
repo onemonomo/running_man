@@ -1,5 +1,5 @@
 /*
-    �������룬�����쳣�������������ṹ
+    公共代码，包括异常处理和重命名结构
 */
 
 #ifndef _COMMON_
@@ -22,13 +22,13 @@ const uint TOTAL_STEPS = 100;
     }                               \
     __JUMP_HERE__:
 
-// ��¼��������
+// 记录错误行数
 #define JUMP()                      \
     {                               \
         __errorLine = __LINE__;     \
         goto __JUMP_HERE__;         \
     }
-// ��������ֱֵ�Ӻ괦��
+// 函数返回值直接宏处理
 #define EXEC(func)                  \
     {                               \
         __funcReturn = func;        \
@@ -39,7 +39,7 @@ const uint TOTAL_STEPS = 100;
 #define HANDLE_ERROR                \
     {                               \
         printf("error occured at line = %d.\n", __errorLine); \
-        // �����󲹾ȴ�ʩ
+        // 做错误补救措施
 
 #define END_HANDLE_ERROR            \
     }

@@ -22,7 +22,7 @@ void AbstractPlayGround::Init(uint iTrackNum, bool iCleanMode)
     cleanMode = iCleanMode;
     trackNumber = iTrackNum;
 
-    // ÉèÖÃÔË¶¯Ô±ÊıÎª0
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½Ô±ï¿½ï¿½Îª0
     playerNumber = 0;
     trackList = new Track[iTrackNum];
     CustInit();
@@ -31,7 +31,7 @@ void AbstractPlayGround::Init(uint iTrackNum, bool iCleanMode)
 
 void AbstractPlayGround::StartRun()
 {
-    // ÅĞ¶ÏÊÇ·ñÒÑ¾­³õÊ¼»¯
+    // åˆ¤æ–­æ˜¯å¦å·²ç»åˆå§‹åŒ–
     if (inited == false) {
         printf("play ground not ready.\n");
         return;
