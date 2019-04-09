@@ -2,6 +2,8 @@
 #include "PlayGroundOne.h"
 #include "YunQue.h"
 #include "Revenger.h"
+#include "SanZang.h"
+#include "HaiXiu.h"
 
 using namespace std;
 
@@ -49,8 +51,35 @@ int match1()
     return 0;
 }
 
+
+int match2()
+{
+    SanZang *runner1 = new SanZang;
+    runner1->Init(115, "115 SanZang");
+    runner1->YouDang();
+    Revenger *runner2 = new Revenger;
+    runner2->Init(100, "100 Rvenger");
+    YunQue *runner3 = new YunQue;
+    runner3->Init(130, "130 YunQue ");
+    runner3->YouDang();
+    HaiXiu *runner4 = new HaiXiu;
+    runner4->Init(114, "114 HaiXiu ");
+
+    PlayGroundOne *playGround1 = new PlayGroundOne;
+    playGround1->Init(TRACK_NUM);
+    playGround1->AddRunner(runner1);
+    playGround1->AddRunner(runner2);
+    playGround1->AddRunner(runner3);
+    playGround1->AddRunner(runner4);
+    playGround1->StartRun();
+    delete runner1;
+    delete runner2;
+    delete runner3;
+    return 0;
+}
+
 int main()
 {
-    match1();
+    match2();
     return 0;
 }

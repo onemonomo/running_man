@@ -65,7 +65,7 @@ void AbstractRunner::Action()
 
     CustAction();
     // 下次位置变更为CD时间x标准长度
-    curPosi = coolDown * STANDARD_DISTANCE * STANDARD_SPEED / speed;
+    curPosi = coolDown * TALENT_STONE * STANDARD_DISTANCE * STANDARD_SPEED / speed;
 
     /*
     int cmd;

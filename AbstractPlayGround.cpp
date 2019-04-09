@@ -22,7 +22,6 @@ void AbstractPlayGround::Init(uint iTrackNum, bool iCleanMode)
     cleanMode = iCleanMode;
     trackNumber = iTrackNum;
 
-    // �����˶�Ա��Ϊ0
     playerNumber = 0;
     trackList = new Track[iTrackNum];
     CustInit();

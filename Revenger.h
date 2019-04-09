@@ -18,7 +18,7 @@ protected:
 private:
     void CustInit()
     {
-        coolDown = 3;
+        coolDown = 4;
         step = 1;
         return;
     }
