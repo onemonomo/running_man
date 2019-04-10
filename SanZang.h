@@ -22,7 +22,6 @@ protected:
 private:
     void CustInit()
     {
-        coolDown = 3.5;
         step = 1;
         return;
     }
@@ -32,9 +31,15 @@ private:
         return;
     }
 
-    void CustAction()
+    void CustAction(double &iCoolDown)
     {
-        // 待修改
+        int turn = totalActionTimes % 2;
+        if (turn == 1)
+        {
+            iCoolDown = 3 * TALENT_STONE;
+            return;
+        }
+        iCoolDown =3.5 * TALENT_STONE;
         attackTimes++;
     }
 };

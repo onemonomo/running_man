@@ -18,13 +18,19 @@ protected:
 private:
     void CustInit()
     {
-        coolDown = 4.5;
         step = 1;
         return;
     }
 
-    void CustAction()
+    void CustAction(double &iCoolDown)
     {
+        int turn = totalActionTimes % 3;
+        if (turn == 2)
+        {
+            iCoolDown = 3 * TALENT_STONE;
+            return;
+        }
+        iCoolDown =4.5 * TALENT_STONE;
         attackTimes++;
     }
 

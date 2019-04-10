@@ -31,8 +31,7 @@ void AbstractRunner::Init(double iSpeed, char iName[])
 
     name = new char[strlen(iName)+1];
     strcpy(name, iName);
-    // 冷却时间默认4秒
-    coolDown = 4.0;
+
     speed = iSpeed;
     // 各个角色自适应初始化
     CustInit();
@@ -60,12 +59,13 @@ void AbstractRunner::Run(bool &reached, double &nextPosi)
 
 void AbstractRunner::Action()
 {
+    double coolDown = 4.0;
+    CustAction(coolDown);
+    // ++固定CustAction后面，CustAction依赖totalActionTimes
     totalActionTimes++;
-    printf("%s action %d\n", name, totalActionTimes);
-
-    CustAction();
+    printf("%s action %d, with coolDown(%.5f)\n", name, totalActionTimes, coolDown);
     // 下次位置变更为CD时间x标准长度
-    curPosi = coolDown * TALENT_STONE * STANDARD_DISTANCE * STANDARD_SPEED / speed;
+    curPosi += coolDown * STANDARD_DISTANCE * STANDARD_SPEED / speed;
 
     /*
     int cmd;
@@ -90,5 +90,5 @@ void AbstractRunner::Report()
         printf("name not exist.\n");
         return;
     }
-    printf("%s actioned_times(%d) attack_times(%d) with cool_down(%f)\n", name, totalActionTimes, attackTimes, coolDown);
+    printf("%s actioned_times(%d) attack_times(%d)\n", name, totalActionTimes, attackTimes);
 }

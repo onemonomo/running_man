@@ -19,15 +19,31 @@ public:
 
     void GuoShang()
     {
-        coolDown -= 0.5;
+        weaponCD -= 0.5;
     }
 
+    void GuoShang2()
+    {
+        weaponCDPlus = -0.5;
+    }
+
+    void ZaiBuZhan()
+    {
+        weaponCD -= 0.2;
+    }
+
+    void ZaiBuZhan2()
+    {
+        weaponCDPlus = -0.2;
+    }
 protected:
 
 private:
     void CustInit()
     {
-        coolDown = 3;
+        weaponCD = 3.0 * TALENT_STONE;
+        XiangWeiCD = 2.0 * TALENT_STONE;
+        weaponCDPlus = 0;
         step = 1;
         return;
     }
@@ -37,19 +53,28 @@ private:
         return;
     }
 
-    void CustAction()
+    void CustAction(double &iCoolDown)
     {
-        if (totalActionTimes == 1) {
+        // 第一次
+        if (totalActionTimes == 0) {
             XiangWei();
+            iCoolDown = XiangWeiCD; // 相位CD
             return;
         }
+        iCoolDown = weaponCD + weaponCDPlus;
         attackTimes++;
+
     }
 
     void XiangWei()
     {
-        coolDown = coolDown*(1-0.35);
+        weaponCD = weaponCD*(1-0.4);
+        XiangWeiCD = XiangWeiCD*(1-0.4);
     }
+private:
+    double weaponCD;
+    double weaponCDPlus;
+    double XiangWeiCD;
 };
 
 #endif

@@ -10,7 +10,7 @@ typedef unsigned int uint;
 const double STANDARD_DISTANCE = 10.0;
 const double STANDARD_SPEED = 100.0;
 const double TALENT_STONE = 0.95; // 刻印减5%cd
-const uint TOTAL_STEPS = 200;
+const uint TOTAL_STEPS = 80;
 
 #define SUCCESS 0
 
