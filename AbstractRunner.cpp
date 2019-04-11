@@ -5,6 +5,7 @@ AbstractRunner::AbstractRunner()
 {
     name = nullptr;
     speed = 0;
+    weapon = nullptr;
     curPosi = 0;
     step = 1;
     totalActionTimes = 0;
@@ -55,6 +56,15 @@ void AbstractRunner::Run(bool &reached, double &nextPosi)
     reached = 0;
     return;
     CustRun(reached, nextPosi);
+}
+
+void AbstractRunner::AddWeapon(AbstractWeapon *iWeapon)
+{
+    if (iWeapon == nullptr){
+        printf("null ptr.\n");
+        return;
+    }
+    weapon = iWeapon;
 }
 
 void AbstractRunner::Action()

@@ -9,6 +9,8 @@
 #include <iostream>
 #include "Common.h"
 
+class AbstractWeapon;
+
 class AbstractRunner
 {
 public:
@@ -19,6 +21,7 @@ public:
     void Action();
     void PrintName();
     void Report();
+    void AddWeapon(AbstractWeapon *iWeapon); // 暂时定义成公有，后续需要移植到Init去调用，每个角色必须佩带
 
 protected: // 不能定义成private，这样子类无法访问
     double step; // 步长
@@ -37,6 +40,7 @@ private:
 private:
     char *name;
     double speed;
+    AbstractWeapon *weapon;
     bool inited; // 是否已经初始化成功
 };
 
