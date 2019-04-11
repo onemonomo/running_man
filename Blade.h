@@ -8,4 +8,4 @@ class Blade
 
 };
 
-#endif // _WEAPON_GUN_
+#endif // _WEAPON_BLADE_

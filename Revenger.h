@@ -22,26 +22,10 @@ private:
         step = 1;
         return;
     }
-    /*
-    void CustAction(double &iCoolDown)
+
+    void CustAction(double &oCoolDown)
     {
-        int turn = totalActionTimes % 3;
-        if (turn == 2)
-        {
-            iCoolDown = 3 * TALENT_STONE;
-            return;
-        }
-        iCoolDown = 4 * TALENT_STONE;
-        attackTimes++;
-    }
-    */
-    void CustAction(double &iCoolDown)
-    {
-        if(weapon == nullptr){
-            printf("no weapon.\n");
-            return;
-        }
-        weapon->Use(iCoolDown);
+        UseWeapon(oCoolDown);
     }
 
     void CustRun(bool &reached, double &nextPosi)

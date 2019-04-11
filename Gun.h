@@ -25,15 +25,15 @@ protected:
             printf("error: no owner.\n");
             return;
         }
-        char *owenerName = nullptr;
-        owner->GetName(owenerName);
+        char *ownerName = nullptr;
+        owner->GetName(ownerName);
         if (bulletUsed == bulletNum) {
-            printf("%s reload the bullet.\n", owenerName);
+            printf("%s reload the bullet.\n", ownerName);
             oCoolDown = 3 * TALENT_STONE;
             bulletUsed = 0;
             return;
         }
-
+        printf("%s biu! open fire!!!\n", ownerName);
         bulletUsed++;
         oCoolDown = coolDown * TALENT_STONE;
     }

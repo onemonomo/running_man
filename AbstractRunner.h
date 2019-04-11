@@ -24,6 +24,9 @@ public:
     void Report();
     void AddWeapon(AbstractWeapon *iWeapon); // 暂时定义成公有，后续需要移植到Init去调用，每个角色必须佩带
 
+protected:
+    void UseWeapon(double &oCoolDown);
+
 protected: // 不能定义成private，这样子类无法访问
     double step; // 步长
     double curPosi;
@@ -34,7 +37,7 @@ protected: // 不能定义成private，这样子类无法访问
 private:
     virtual void CustInit() = 0;
     virtual void CustRun(bool &reached, double &nextPosi) = 0;
-    virtual void CustAction(double &iCoolDown) = 0;
+    virtual void CustAction(double &oCoolDown) = 0;
     // 由于该类有指针，需要禁用复制构造函数和赋值运算符
     AbstractRunner(const AbstractRunner&);
     AbstractRunner& operator=(const AbstractRunner&);

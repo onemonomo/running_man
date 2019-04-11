@@ -69,6 +69,15 @@ void AbstractRunner::AddWeapon(AbstractWeapon *iWeapon)
     iWeapon->SetOwner(this);
 }
 
+void AbstractRunner::UseWeapon(double &oCoolDown)
+{
+    if(weapon == nullptr){
+        printf("no weapon.\n");
+        return;
+    }
+    weapon->Use(oCoolDown);
+}
+
 void AbstractRunner::Action()
 {
     double coolDown = 4.0;
