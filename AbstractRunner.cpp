@@ -72,7 +72,7 @@ void AbstractRunner::AddWeapon(AbstractWeapon *iWeapon)
 void AbstractRunner::UseWeapon(double &oCoolDown)
 {
     if(weapon == nullptr){
-        printf("no weapon.\n");
+        printf("%s no weapon.\n", name);
         return;
     }
     weapon->Use(oCoolDown, attackTimes);

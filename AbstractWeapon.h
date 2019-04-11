@@ -33,11 +33,11 @@ public:
     }
     // 定义成虚函数主要是给knife自定义
     virtual void Use(double &oCoolDown, uint &oAttackTimes) = 0;
+    virtual void RateCD(uint ratio){};
 
 protected:
-    uint bulletNum;
-    uint bulletUsed;
     double coolDown;
+    double cdBonus;
     AbstractRunner *owner;
 
 private:

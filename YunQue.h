@@ -8,6 +8,7 @@
 #define _YUN_QUE_
 
 #include "AbstractRunner.h"
+#include "AbstractWeapon.h"
 
 class YunQue : public AbstractRunner
 {
@@ -17,33 +18,12 @@ public:
         step = 1.2;
     }
 
-    void GuoShang()
-    {
-        weaponCD -= 0.5;
-    }
-
-    void GuoShang2()
-    {
-        weaponCDPlus = -0.5;
-    }
-
-    void ZaiBuZhan()
-    {
-        weaponCD -= 0.2;
-    }
-
-    void ZaiBuZhan2()
-    {
-        weaponCDPlus = -0.2;
-    }
 protected:
 
 private:
     void CustInit()
     {
-        weaponCD = 3.0 * TALENT_STONE;
         XiangWeiCD = 2.0 * TALENT_STONE;
-        weaponCDPlus = 0;
         step = 1;
         return;
     }
@@ -53,27 +33,27 @@ private:
         return;
     }
 
-    void CustAction(double &iCoolDown)
+    void CustAction(double &oCoolDown)
     {
         // 第一次
         if (totalActionTimes == 0) {
             XiangWei();
-            iCoolDown = XiangWeiCD; // 相位CD
+            oCoolDown = XiangWeiCD; // 相位CD
             return;
         }
-        iCoolDown = weaponCD + weaponCDPlus;
-        attackTimes++;
-
+        UseWeapon(oCoolDown);
     }
 
     void XiangWei()
     {
-        weaponCD = weaponCD*(1-0.4);
+        if (weapon == nullptr){
+            printf("no weapon.\n");
+            return;
+        }
+        weapon->RateCD(40);
         XiangWeiCD = XiangWeiCD*(1-0.4);
     }
 private:
-    double weaponCD;
-    double weaponCDPlus;
     double XiangWeiCD;
 };
 

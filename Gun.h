@@ -8,17 +8,18 @@
 class Gun : public AbstractWeapon
 {
 public:
-    Gun(uint iBulletNum, double iCoolDown)
+    Gun(uint iBulletNum, double iCoolDown, double iCdBonus = 0)
     {
         bulletNum = iBulletNum;
-        coolDown = iCoolDown;
+        coolDown = iCoolDown * TALENT_STONE;
+        cdBonus = iCdBonus; // 应该不受刻印影响
+        reloadCD = 3 * TALENT_STONE;
         bulletUsed = 0;
     }
     virtual ~Gun()
     {
     };
 
-protected:
     virtual void Use(double &oCoolDown, uint &oAttackTimes)
     {
         if (owner == nullptr) {
@@ -29,16 +30,19 @@ protected:
         owner->GetName(ownerName);
         if (bulletUsed == bulletNum) {
             printf("%s reload the bullet.\n", ownerName);
-            oCoolDown = 3 * TALENT_STONE;
+            oCoolDown = reloadCD;
             bulletUsed = 0;
             return;
         }
         printf("%s biu! open fire!!!\n", ownerName);
         bulletUsed++;
         oAttackTimes++;
-        oCoolDown = coolDown * TALENT_STONE;
+        oCoolDown = coolDown - cdBonus;
     }
-
+private:
+    uint bulletNum;
+    uint bulletUsed;
+    double reloadCD;
 };
 
 #endif // _WEAPON_GUN_
