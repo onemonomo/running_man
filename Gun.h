@@ -19,7 +19,7 @@ public:
     };
 
 protected:
-    virtual void Use(double &oCoolDown)
+    virtual void Use(double &oCoolDown, uint &oAttackTimes)
     {
         if (owner == nullptr) {
             printf("error: no owner.\n");
@@ -35,6 +35,7 @@ protected:
         }
         printf("%s biu! open fire!!!\n", ownerName);
         bulletUsed++;
+        oAttackTimes++;
         oCoolDown = coolDown * TALENT_STONE;
     }
 

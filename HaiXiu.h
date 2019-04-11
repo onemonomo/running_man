@@ -22,16 +22,9 @@ private:
         return;
     }
 
-    void CustAction(double &iCoolDown)
+    void CustAction(double &oCoolDown)
     {
-        int turn = totalActionTimes % 3;
-        if (turn == 2)
-        {
-            iCoolDown = 3 * TALENT_STONE;
-            return;
-        }
-        iCoolDown =4.5 * TALENT_STONE;
-        attackTimes++;
+        UseWeapon(oCoolDown);
     }
 
     void CustRun(bool &reached, double &nextPosi)

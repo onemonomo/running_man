@@ -75,7 +75,7 @@ void AbstractRunner::UseWeapon(double &oCoolDown)
         printf("no weapon.\n");
         return;
     }
-    weapon->Use(oCoolDown);
+    weapon->Use(oCoolDown, attackTimes);
 }
 
 void AbstractRunner::Action()

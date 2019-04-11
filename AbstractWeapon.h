@@ -32,7 +32,7 @@ public:
         owner = iOwner;
     }
     // 定义成虚函数主要是给knife自定义
-    virtual void Use(double &oCoolDown) = 0;
+    virtual void Use(double &oCoolDown, uint &oAttackTimes) = 0;
 
 protected:
     uint bulletNum;

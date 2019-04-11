@@ -58,18 +58,26 @@ int match1()
 int match2()
 {
     TOTAL_STEPS = 150;
+
     SanZang *runner1 = new SanZang;
     runner1->Init(115, "115 SanZang");
     runner1->YouDang();
+    Gun *ZhongHuoQi = new Gun(1, 3.5);
+    runner1->AddWeapon(ZhongHuoQi);
+
     Revenger *runner2 = new Revenger;
     runner2->Init(100, "100 Rvenger");
     Gun *XianDan = new Gun(2, 4);
     runner2->AddWeapon(XianDan);
+
     YunQue *runner3 = new YunQue;
     runner3->Init(130, "130 YunQue ");
     runner3->YouDang();
+
     HaiXiu *runner4 = new HaiXiu;
     runner4->Init(114, "114 HaiXiu ");
+    Gun *JuJiQiang = new Gun(2, 4.5);
+    runner4->AddWeapon(JuJiQiang);
 
     PlayGroundOne *playGround1 = new PlayGroundOne;
     playGround1->Init(TRACK_NUM);
