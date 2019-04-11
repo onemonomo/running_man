@@ -12,8 +12,8 @@ class AbstractRunner;
 class AbstractWeapon
 {
 public:
-    AbstractWeapon();
-    virtual ~AbstractWeapon();
+    AbstractWeapon(){owner = nullptr;}
+    virtual ~AbstractWeapon(){owner = nullptr;}
 public:
     enum QualityLevel
     {
@@ -21,17 +21,29 @@ public:
         MID,
         HIGH
     };
-protected:
-    // 定义成虚函数主要是给knife自定义
-    virtual void Use(double &oCoolDown);
 
-private:
-    uint attackValue;
+    // 原来写在protected里面的,但是友元类是不继承的，得所有角色都申明成友元
+    void SetOwner(AbstractRunner *iOwner)
+    {
+        if(iOwner == nullptr){
+            printf("owner null ptr.\n");
+            return;
+        }
+        owner = iOwner;
+    }
+    // 定义成虚函数主要是给knife自定义
+    virtual void Use(double &oCoolDown) = 0;
+
+protected:
     uint bulletNum;
     uint bulletUsed;
     double coolDown;
-    QualityLevel quality;
     AbstractRunner *owner;
+
+private:
+    uint attackValue;
+    QualityLevel quality;
+
 };
 
 #endif // _ABSTRACT_WEAPON_

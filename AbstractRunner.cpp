@@ -1,4 +1,5 @@
 #include "AbstractRunner.h"
+#include "AbstractWeapon.h"
 #include "string.h"
 
 AbstractRunner::AbstractRunner()
@@ -65,6 +66,7 @@ void AbstractRunner::AddWeapon(AbstractWeapon *iWeapon)
         return;
     }
     weapon = iWeapon;
+    iWeapon->SetOwner(this);
 }
 
 void AbstractRunner::Action()
@@ -92,6 +94,11 @@ void AbstractRunner::PrintName()
         return;
     }
     printf("%s is at %f\n", name, curPosi);
+}
+
+void AbstractRunner::GetName(char *&oName)
+{
+    oName = name;
 }
 
 void AbstractRunner::Report()

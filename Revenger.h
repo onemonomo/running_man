@@ -8,6 +8,7 @@
 #define _REVENGER_
 
 #include "AbstractRunner.h"
+#include "Gun.h"
 
 class Revenger : public AbstractRunner
 {
@@ -21,7 +22,7 @@ private:
         step = 1;
         return;
     }
-
+    /*
     void CustAction(double &iCoolDown)
     {
         int turn = totalActionTimes % 3;
@@ -32,6 +33,15 @@ private:
         }
         iCoolDown = 4 * TALENT_STONE;
         attackTimes++;
+    }
+    */
+    void CustAction(double &iCoolDown)
+    {
+        if(weapon == nullptr){
+            printf("no weapon.\n");
+            return;
+        }
+        weapon->Use(iCoolDown);
     }
 
     void CustRun(bool &reached, double &nextPosi)

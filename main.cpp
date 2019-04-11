@@ -4,8 +4,11 @@
 #include "Revenger.h"
 #include "SanZang.h"
 #include "HaiXiu.h"
+#include "Gun.h"
 
 using namespace std;
+
+uint TOTAL_STEPS = 100;
 
 int test_func()
 {
@@ -54,11 +57,14 @@ int match1()
 
 int match2()
 {
+    TOTAL_STEPS = 150;
     SanZang *runner1 = new SanZang;
     runner1->Init(115, "115 SanZang");
     runner1->YouDang();
     Revenger *runner2 = new Revenger;
     runner2->Init(100, "100 Rvenger");
+    Gun *XianDan = new Gun(2, 4);
+    runner2->AddWeapon(XianDan);
     YunQue *runner3 = new YunQue;
     runner3->Init(130, "130 YunQue ");
     runner3->YouDang();
@@ -127,6 +133,6 @@ int match3()
 
 int main()
 {
-    match3();
+    match2();
     return 0;
 }
