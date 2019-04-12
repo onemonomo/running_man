@@ -1,6 +1,6 @@
 
 source = ./main.cpp
-header = .
-compile_process : $(source) $(header)
-	g++ AbstractPlayGround.cpp AbstractRunner.cpp main.cpp -o main.out
+header = -I ./common -I ./abstract -I ./player -I ./weapon
+compile_process : $(source)
+	g++ $(header) ./abstract/AbstractPlayGround.cpp ./abstract/AbstractRunner.cpp main.cpp -o main.out
 	./main.out
