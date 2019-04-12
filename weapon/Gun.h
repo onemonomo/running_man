@@ -8,17 +8,14 @@
 class Gun : public AbstractWeapon
 {
 public:
-    Gun(uint iBulletNum, double iCoolDown, double iCdBonus = 0)
+    Gun(uint iBulletNum, double iCoolDown, double iCdBonus = 0) : AbstractWeapon(iCoolDown)
     {
         bulletNum = iBulletNum;
-        coolDown = iCoolDown * TALENT_STONE;
         cdBonus = iCdBonus; // 应该不受刻印影响
         reloadCD = 3 * TALENT_STONE;
         bulletUsed = 0;
     }
-    virtual ~Gun()
-    {
-    };
+    virtual ~Gun() {};
 
     virtual void Use(double &oCoolDown, uint &oAttackTimes)
     {

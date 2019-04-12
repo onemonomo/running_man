@@ -6,9 +6,8 @@
 class Blade : public AbstractWeapon
 {
 public:
-    Blade(double iCoolDown, double iCdBonus = 0)
+    Blade(double iCoolDown, double iCdBonus = 0) : AbstractWeapon(iCoolDown)
     {
-        coolDown = iCoolDown * TALENT_STONE;
         cdBonus = iCdBonus; // 应该不受刻印影响
     }
     virtual ~Blade()

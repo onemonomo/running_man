@@ -6,14 +6,19 @@
 #define _ABSTRACT_WEAPON_
 
 #include "Common.h"
+#include "AbstractCoolDown.h"
 
 class AbstractRunner;
 
-class AbstractWeapon
+class AbstractWeapon : public AbstractCoolDown
 {
 public:
-    AbstractWeapon(){owner = nullptr;}
+    AbstractWeapon(double iCoolDown) : AbstractCoolDown(iCoolDown)
+    {
+        owner = nullptr;
+    }
     virtual ~AbstractWeapon(){owner = nullptr;}
+
 public:
     enum QualityLevel
     {
@@ -36,7 +41,7 @@ public:
     virtual void RateCD(uint ratio){};
 
 protected:
-    double coolDown;
+
     double cdBonus;
     AbstractRunner *owner;
 
