@@ -40,7 +40,9 @@ public:
     virtual void Use(double &oCoolDown, uint &oAttackTimes) = 0;
 
 protected:
-
+    AbstractWeapon(const AbstractWeapon &);
+    AbstractWeapon& operator=(const AbstractWeapon &);
+    
     double cdBonus;
     AbstractRunner *owner;
 

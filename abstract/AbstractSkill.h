@@ -13,8 +13,12 @@ class AbstractRunner;
 class AbstractSkill : AbstractCoolDown
 {
 public:
-    AbstractSkill(double iCoolDown) : AbstractCoolDown(iCoolDown) {}
-    virtual ~AbstractSkill(){}
+    AbstractSkill(double iCoolDown) : AbstractCoolDown(iCoolDown)
+    {
+        owner = nullptr;
+        level = 1;
+    }
+    virtual ~AbstractSkill(){owner = nullptr;}
 
     virtual void Use(double &oCoolDown) = 0;
 
@@ -27,10 +31,13 @@ public:
         owner = iOwner;
     }
 
-protected:
-    double coolDown;
-    AbstractRunner *owner;
+    virtual void SetLevel(uint iLevel) = 0;
 
+protected:
+    AbstractSkill(const AbstractSkill &);
+    AbstractSkill& operator=(const AbstractSkill &);
+    AbstractRunner *owner;
+    uint level;
 };
 
 #endif
