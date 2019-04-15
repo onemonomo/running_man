@@ -2,15 +2,15 @@
     面向接口编程，技能抽象接口
 */
 
-#ifndef _ABS_CD_
-#define _ABS_CD_
+#ifndef _ABS_SKILL_
+#define _ABS_SKILL_
 
 #include "Common.h"
 #include "AbstractCoolDown.h"
 
 class AbstractRunner;
 
-class AbstractSkill : AbstractCoolDown
+class AbstractSkill : public AbstractCoolDown
 {
 public:
     AbstractSkill(double iCoolDown) : AbstractCoolDown(iCoolDown)
@@ -20,7 +20,8 @@ public:
     }
     virtual ~AbstractSkill(){owner = nullptr;}
 
-    virtual void Use(double &oCoolDown) = 0;
+    // 不应该有这个接口，因为技能实现类要求的入参都不同
+    // virtual void Use(double &oCoolDown) = 0;
 
     void SetOwner(AbstractRunner *iOwner)
     {

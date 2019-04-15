@@ -60,6 +60,14 @@ int match2()
     delete runner1;
     delete runner2;
     delete runner3;
+    delete runner4;
+/*
+    标准结果：
+    115 SanZang actioned_times(7) attack_times(4)
+    100 Rvenger actioned_times(4) attack_times(3)
+    130 YunQue  actioned_times(14) attack_times(13)
+    114 HaiXiu  actioned_times(5) attack_times(4)
+*/
     return 0;
 }
 

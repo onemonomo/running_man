@@ -9,21 +9,24 @@
 
 #include "AbstractRunner.h"
 #include "AbstractWeapon.h"
+#include "XiangWei.h"
 
 class YunQue : public AbstractRunner
 {
 public:
+    YunQue()
+    {
+        skill = new XiangWei(2.0 * TALENT_STONE);
+        skill->SetOwner(this);
+    }
     void YouDang()
     {
         step = 1.2;
     }
 
-protected:
-
 private:
     void CustInit()
     {
-        XiangWeiCD = 2.0 * TALENT_STONE;
         step = 1;
         return;
     }
@@ -33,28 +36,25 @@ private:
         return;
     }
 
+    void CustSkillOne(double &oCoolDown)
+    {
+        // 由于技能类没有了统一的use接口，这里需要强转实际技能类
+        // 对于扩展性来说，个人感觉这样更方便扩展。如果使用了统一的use(oCoolDown)接口函数，那么后续的入参
+        // 就只能放到XiangWei中作局部变量，违反迪米特原则。
+        ((XiangWei*)skill)->Use(oCoolDown, weapon);
+        // 后续需要降低其他技能的CD，直接扩展
+    }
+
     void CustAction(double &oCoolDown)
     {
         // 第一次
         if (totalActionTimes == 0) {
-            XiangWei();
-            oCoolDown = XiangWeiCD; // 相位CD
+            CustSkillOne(oCoolDown);
             return;
         }
         UseWeapon(oCoolDown);
     }
 
-    void XiangWei()
-    {
-        if (weapon == nullptr){
-            printf("no weapon.\n");
-            return;
-        }
-        weapon->RateCD(40);
-        XiangWeiCD = XiangWeiCD*(1-0.4);
-    }
-private:
-    double XiangWeiCD;
 };
 
 #endif

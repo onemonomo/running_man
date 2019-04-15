@@ -10,6 +10,7 @@
 #include "Common.h"
 
 class AbstractWeapon;
+class AbstractSkill;
 
 class AbstractRunner
 {
@@ -23,6 +24,10 @@ public:
     void GetName(char *&oName);
     void Report();
     void AddWeapon(AbstractWeapon *iWeapon); // 暂时定义成公有，后续需要移植到Init去调用，每个角色必须佩带
+    void GetWeapon(AbstractWeapon*& oWeapon)
+    {
+        oWeapon = weapon;
+    }
 
 protected:
     void UseWeapon(double &oCoolDown);
@@ -33,6 +38,7 @@ protected: // 不能定义成private，这样子类无法访问
     uint totalActionTimes; // 记录行动次数
     uint attackTimes;
     AbstractWeapon *weapon;
+    AbstractSkill *skill;
 
 private:
     virtual void CustInit() = 0;

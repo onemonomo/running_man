@@ -6,24 +6,30 @@
 #define _SKILL_XIANGWEI_
 
 #include "AbstractSkill.h"
-#include "AbstractRunner.h"
+#include "AbstractWeapon.h"
 
 class XiangWei : public AbstractSkill
 {
 public:
-    XiangWei(double iCoolDown):AbstractSkill(iCoolDown) {}
+    XiangWei(double iCoolDown) : AbstractSkill(iCoolDown) {}
     ~XiangWei(){};
-    virtual void Use(double &oCoolDown)
+    
+    virtual void Use(double &oCoolDown, AbstractCoolDown* object)
     {
-        if(owner == nullptr) {
-            printf("use skill with no owner.\n");
+        if(object == nullptr) {
+            printf("null ptr.\n");
             oCoolDown = 4;
             return;
         }
 
-        owner->
-
+        object->RateCD(40);
+        oCoolDown = coolDown * 0.6;
     }
-}
+
+    virtual void SetLevel(uint iLevel)
+    {
+        level = iLevel;
+    }
+};
 
 #endif
