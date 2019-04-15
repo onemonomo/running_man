@@ -6,13 +6,14 @@
 #define _SKILL_XIANGWEI_
 
 #include "AbstractSkill.h"
-#include "AbstractRunner.h"
+#include "AbstractWeapon.h"
 
 class XiangWei : public AbstractSkill
 {
 public:
-    XiangWei(double iCoolDown):AbstractSkill(iCoolDown) {}
+    XiangWei(double iCoolDown) : AbstractSkill(iCoolDown) {}
     ~XiangWei(){};
+    
     virtual void Use(double &oCoolDown)
     {
         if(owner == nullptr) {
@@ -21,9 +22,17 @@ public:
             return;
         }
 
-        owner->
-
+        // 违反迪米特原则
+        AbstractWeapon *tmp;
+        owner->GetWeapon(tmp);
+        tmp->RateCD(40);
+        oCoolDown = coolDown * 0.6;
     }
-}
+    
+    virtual void SetLevel(uint iLevel)
+    {
+        level = iLevel;
+    }
+};
 
 #endif

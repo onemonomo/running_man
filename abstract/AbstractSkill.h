@@ -2,15 +2,15 @@
     面向接口编程，技能抽象接口
 */
 
-#ifndef _ABS_CD_
-#define _ABS_CD_
+#ifndef _ABS_SKILL_
+#define _ABS_SKILL_
 
 #include "Common.h"
 #include "AbstractCoolDown.h"
 
 class AbstractRunner;
 
-class AbstractSkill : AbstractCoolDown
+class AbstractSkill : public AbstractCoolDown
 {
 public:
     AbstractSkill(double iCoolDown) : AbstractCoolDown(iCoolDown)

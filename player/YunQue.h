@@ -9,10 +9,16 @@
 
 #include "AbstractRunner.h"
 #include "AbstractWeapon.h"
+#include "XiangWei.h"
 
 class YunQue : public AbstractRunner
 {
 public:
+    YunQue()
+    {
+        skill = new XiangWei(2.0 * TALENT_STONE);
+        skill->SetOwner(this);
+    }
     void YouDang()
     {
         step = 1.2;
@@ -23,7 +29,6 @@ protected:
 private:
     void CustInit()
     {
-        XiangWeiCD = 2.0 * TALENT_STONE;
         step = 1;
         return;
     }
@@ -37,24 +42,12 @@ private:
     {
         // 第一次
         if (totalActionTimes == 0) {
-            XiangWei();
-            oCoolDown = XiangWeiCD; // 相位CD
+            skill->Use(oCoolDown);
             return;
         }
         UseWeapon(oCoolDown);
     }
 
-    void XiangWei()
-    {
-        if (weapon == nullptr){
-            printf("no weapon.\n");
-            return;
-        }
-        weapon->RateCD(40);
-        XiangWeiCD = XiangWeiCD*(1-0.4);
-    }
-private:
-    double XiangWeiCD;
 };
 
 #endif
