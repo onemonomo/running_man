@@ -50,6 +50,10 @@ int match2()
     Gun *JuJiQiang = new Gun(2, 4.5);
     runner4->AddWeapon(JuJiQiang);
 
+    AutoFree tmp1(runner1);
+    AutoFree tmp2(runner2);
+    AutoFree tmp3(runner3);
+    AutoFree tmp4(runner4);
     PlayGroundOne *playGround1 = new PlayGroundOne;
     playGround1->Init(TRACK_NUM);
     playGround1->AddRunner(runner1);
@@ -57,10 +61,6 @@ int match2()
     playGround1->AddRunner(runner3);
     playGround1->AddRunner(runner4);
     playGround1->StartRun();
-    delete runner1;
-    delete runner2;
-    delete runner3;
-    delete runner4;
 /*
     标准结果：
     115 SanZang actioned_times(7) attack_times(4)
